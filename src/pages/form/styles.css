@@ -1,0 +1,117 @@
+.container {
+  margin: 80px auto 0;
+  max-width: 1500px;
+  width: 100%;
+  background: #FFF;
+  border-radius: 4px;
+  padding: 30px;
+  text-align:center;
+  align-items: center;
+}
+
+/* .section {
+  background: transparent linear-gradient(89deg, #000000 0%, #00000000 100%) 0% 0% no-repeat padding-box;
+  height:100vh;
+} */
+
+.content-modal {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-loader {
+  font-size: 20px;
+  color: #202020;
+}
+
+.text-loader-sub {
+  font-size: 15px;
+  color: #202020;
+}
+
+
+.title_form {
+  font-size: 30px;
+  color: #202020;
+}
+
+.button_success {
+  padding: 10px;
+  width: 200px;
+  height: 70px;
+  border-radius: 3px;
+  border: 0;
+  background:#6cc745;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  color: white;
+}
+
+.button_success:hover{
+  background:#60ac40;
+}
+
+.forms {
+  align-items: center;
+  justify-content: center;
+  margin-top: 100px;  
+
+  border-right: 3px solid #e31b24;
+  border-left: 3px solid #e31b24;
+
+}
+
+.form__label {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-top: 0.7rem;
+  display: block;
+  transition: all 0.3s;
+  transform: translateY(0rem);
+}
+
+.form__input {
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  font-size: 1.2rem;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  border-radius: 0.2rem;
+  background-color: #f1f1f1;
+  border: none;
+  width: 60%;
+  display: block;
+  border-bottom: 0.3rem solid transparent;
+  transition: all 0.3s;
+}
+
+.form__input:placeholder-shown + .form__label {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: translateY(-4rem);
+  transform: translateY(-4rem);
+}
+
+.button_search {
+  padding: 10px;
+  width: 200px;
+  height: 90px;
+  border-radius: 3px;
+  border: 0;
+  background:#e31b24;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  color: white;
+}
+
+.button_search:hover{
+  background:#be141c;
+}

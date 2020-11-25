@@ -1,0 +1,103 @@
+body {
+  /* background-image: url("../../assets/background1.jpg");
+  background-repeat: repeat-y; */
+}
+
+/* .section {
+  background: transparent linear-gradient(89deg, #000000 0%, #00000000 100%) 0% 0% no-repeat padding-box;
+  height:100vh;
+} */
+
+.sparrow {
+  height: 50px;
+}
+
+.content-title {
+  margin: 80px auto 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 50px;
+  font-weight: bold;
+  color: white;
+}
+
+.subtitle {
+  font-size: 25px;
+  color: #EEEEEE;
+  margin-top: 20px;
+}
+
+.warning-container {
+  margin-top: 10px;
+  display: flex ;
+  flex-direction: row;
+  margin-bottom: 50px;
+}
+
+.warning {
+  font-size: 18px;
+  color: #EEEEEE;
+}
+
+.button {
+  padding: 50px;
+  border-radius: 3px;
+  border: 0;
+  background:  white;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  color: #202020;
+}
+
+.button:hover{
+  background:  #f6f6f6;  
+}
+
+.content-about {
+  background: transparent linear-gradient(89deg, #000000 0%, #00000000 100%) 0% 0% no-repeat padding-box;
+  width: 100%;
+  margin-top: 5%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  flex-direction: row;
+  display: flex;
+
+  justify-content: center;
+}
+
+.content-about-text {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content-about-carousel {
+  margin: 100px 40px 100px 40px;
+  width: 50%;
+}
+
+.title-about {
+  margin-top: 10%;
+  margin-left: 30px;
+
+  font-size: 34px;
+  font-weight: bold;
+  color: white;
+}
+
+.text-about {
+  font-size: 18px;
+  color: #EEEEEE;
+  margin-top: 20px;
+  margin-bottom: 50px;
+  margin-left: 30px;
+}
+
