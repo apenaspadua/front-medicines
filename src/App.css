@@ -9,7 +9,7 @@
 
 html, body, #root {
   /* background-image: url("./assets/background1.jpg"); */
-  background-color: #29292e;
+  /* background-color: #29292e; */
   
   background-repeat: repeat-y;
   min-height: 100%;

@@ -1,12 +1,12 @@
 body {
-  /* background-image: url("../../assets/background1.jpg");
-  background-repeat: repeat-y; */
+  background-image: url("../../assets/background1.jpg");
+  background-repeat: repeat-y;
 }
 
-/* .section {
+.section {
   background: transparent linear-gradient(89deg, #000000 0%, #00000000 100%) 0% 0% no-repeat padding-box;
   height:100vh;
-} */
+}
 
 .sparrow {
   height: 50px;

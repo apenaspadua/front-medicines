@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { Collapse } from 'react-bootstrap';
 import { FiPlus } from "react-icons/fi";
+import { RiAlertFill } from 'react-icons/ri';
+
+import { IconContext } from "react-icons";
 
 import { 
   ComoDevoUsarEsteMedicamento, 
@@ -49,190 +52,269 @@ const Leaflet = ({data, index}) => {
   return (
     <>
       <div className='info-card'>
-        <div>
-          <button className='button-collapse' onClick={() => setInteractions(interactions ? false : true)}>
-            <FiPlus/>
-          </button>
-          <text className='title-info-card'>{InteraçõesMedicamentosas.toUpperCase()}</text>
+        <div className='content-button-title'>
+          <div>
+            <button className='button-collapse' onClick={() => setInteractions(interactions ? false : true)}>
+              <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+                <div>
+                  <FiPlus />
+                </div>
+              </IconContext.Provider>
+            </button>
+            
+            <text className='title-info-card'>{InteraçõesMedicamentosas.toUpperCase()}</text> 
+          </div>
+        
+          <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#ffbd59"}}}>
+            <div>
+              <RiAlertFill />
+            </div>
+          </IconContext.Provider>
         </div>
-      
 
         <Collapse in={interactions}>
           <text  className='text-info-card'>
-            {data[index][InteraçõesMedicamentosas.replace(/\./g, '\n\n')]}
+            {data[index][InteraçõesMedicamentosas]}
           </text>
-        </Collapse>         
+        </Collapse>     
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setActives(actives ? false : true)}>
-          <FiPlus/>
-        </button>
+        <div className='content-button-title'>
+          <div>
+            <button className='button-collapse' onClick={() => setActives(actives ? false : true)}>
+              <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+                <div>
+                  <FiPlus />
+                </div>
+              </IconContext.Provider>
+            </button>
+            <text className='title-info-card'>{PrincipiosAtivos.toUpperCase()}</text>
+          </div>
 
-        <text>{PrincipiosAtivos}</text>
-
+          <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#ffbd59"}}}>
+            <div>
+              <RiAlertFill />
+            </div>
+          </IconContext.Provider>
+        </div>
+       
         <Collapse in={actives}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][PrincipiosAtivos]}
           </text>
         </Collapse>         
       </div>
 
-
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen1(open1 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{ComoDevoUsarEsteMedicamento}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen1(open1 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{ComoDevoUsarEsteMedicamento.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open1}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][ComoDevoUsarEsteMedicamento]}
           </text>
         </Collapse>         
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen2(open2 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{ComoEsteMedicamentoFunciona}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen2(open2 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{ComoEsteMedicamentoFunciona.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open2}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][ComoEsteMedicamentoFunciona]}
           </text>
         </Collapse>         
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen3(open3 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{GruposFarmacologicos}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen3(open3 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{GruposFarmacologicos.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open3}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][GruposFarmacologicos]}
           </text>
         </Collapse>         
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen4(open4 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{IndicacoesTerapeuticas}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen4(open4 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{IndicacoesTerapeuticas.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open4}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][IndicacoesTerapeuticas]}
           </text>
         </Collapse>         
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen5(open5 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{OQueDevoFazerQuandoEsquecer}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen5(open5 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{OQueDevoFazerQuandoEsquecer.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open5}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][OQueDevoFazerQuandoEsquecer]}
           </text>
         </Collapse>         
       </div>
 
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen6(open6 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{OQueDevoSaberAntesDeUsar}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen6(open6 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{OQueDevoSaberAntesDeUsar.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open6}>
-          <text>
+          <text className='text-info-card'>
             {data[index][OQueDevoSaberAntesDeUsar]}
           </text>
         </Collapse>         
       </div>
-      
+
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen7(open7 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{OQueFazerSeAlguemUsarUmaQuantidadeMaior}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen7(open7 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>          
+            <text className='title-info-card'>{OQueFazerSeAlguemUsarUmaQuantidadeMaior.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open7}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][OQueFazerSeAlguemUsarUmaQuantidadeMaior]}
           </text>
         </Collapse>         
       </div>
-      
+
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen8(open8 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{OndeComoEPorQuantoTempoPossoGuardar}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen8(open8 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{OndeComoEPorQuantoTempoPossoGuardar.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open8}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][OndeComoEPorQuantoTempoPossoGuardar]}
           </text>
         </Collapse>         
       </div>
-      
+
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen9(open9 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{ParaQueEsteMedicamentoIndicado}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen9(open9 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{ParaQueEsteMedicamentoIndicado.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open9}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][ParaQueEsteMedicamentoIndicado]}
           </text>
         </Collapse>         
       </div>
-      
+
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen10(open10 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{QuaisOsMales}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen10(open10 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{QuaisOsMales.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open10}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][QuaisOsMales]}
           </text>
         </Collapse>         
       </div>
-      
+
       <div className='info-card'>
-        <button className='button-collapse' onClick={() => setOpen11(open11 ? false : true)}>
-          <FiPlus/>
-        </button>
-
-        <text>{QuandoNaoDevoUsar}</text>
-
+        <div>
+          <button className='button-collapse' onClick={() => setOpen11(open11 ? false : true)}>
+            <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
+              <div>
+                <FiPlus />
+              </div>
+            </IconContext.Provider>
+          </button>
+          <text className='title-info-card'>{QuandoNaoDevoUsar.toUpperCase()}</text>
+        </div>
+      
         <Collapse in={open11}>
-          <text>
+          <text  className='text-info-card'>
             {data[index][QuandoNaoDevoUsar]}
           </text>
         </Collapse>         
       </div>
-      
+
     </>
   )
 
