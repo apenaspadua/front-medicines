@@ -6,25 +6,35 @@
   margin-bottom: 10px;
   padding: 20px;
   flex-direction: column;
-  display: flex
+  display: flex;
+}
+
+.title-info-card-important {
+  font-family: 'Roboto', sans-serif;
+  color: #e31b24;
+  margin-left: 10px;
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .title-info-card {
   font-family: 'Roboto', sans-serif;
   color: #333;
-  
-
   margin-left: 20px;
   margin-bottom: 30px;
   font-weight: bold;
   font-size: 18px;
 }
 
+
 .text-info-card {
   font-family: 'Roboto', sans-serif;
   color: #333;
   margin-top: 30px;
-  font-size: 16px;
+  font-size: 18px;
+  text-align: justify;  
+  white-space: pre-line;
 }
 
 .button-collapse {
@@ -47,8 +57,39 @@
 
 .content-button-title {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; 
   justify-content: space-between;
+}
+
+.see-more{
+  margin-top: 20px;
+  color: rgb(39, 151, 216);
+  font-weight: bold;
+}
+
+.see-more:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.modal-90w{
+  width: 90% !important;
+}
+
+.divisor{
+  border-bottom: 1px solid rgb(116, 115, 115);
+  margin-top: 70px;
+  margin-bottom: 70px;
+}
+
+.text-divisor{
+  font-family: 'Roboto', sans-serif;
+  color: #333;
+  margin-top: 30px;
+  font-size: 30px;
+  text-align: justify;  
+  white-space: pre-line;
+
 }
 
 /* .warning-interactions {

@@ -6,6 +6,8 @@ import { RiAlertFill } from 'react-icons/ri';
 
 import { IconContext } from "react-icons";
 
+import Modal from 'react-bootstrap/Modal'
+
 import { 
   ComoDevoUsarEsteMedicamento, 
   ComoEsteMedicamentoFunciona,
@@ -19,7 +21,8 @@ import {
   ParaQueEsteMedicamentoIndicado,
   PrincipiosAtivos,
   QuaisOsMales,
-  QuandoNaoDevoUsar
+  QuandoNaoDevoUsar,
+  Titulo
 
 } from './strings';
 
@@ -27,7 +30,6 @@ import './styles.css'
 
 const Leaflet = ({data, index}) => {
 
-  const [interactions, setInteractions] = useState(false)
   const [actives, setActives] = useState(false)
 
   const [open1, setOpen1] = useState(false);
@@ -41,28 +43,44 @@ const Leaflet = ({data, index}) => {
   const [open9, setOpen9] = useState(false);
   const [open10, setOpen10] = useState(false);
   const [open11, setOpen11] = useState(false);
-  const [open12, setOpen12] = useState(false);
-  const [open13, setOpen13] = useState(false);
-  const [open14, setOpen14] = useState(false);
+
+  const [showModal, setShowModal] = useState(false)
+
+  const show = () => {
+    setShowModal(true)
+  }
+
+  const hide = () => {
+    setShowModal(false)
+  }
+ 
 
   useEffect(() => {
-    console.log(data, index);
+    console.log(data[index][InteraçõesMedicamentosas].slice(0, 200));
   }, [])
 
   return (
     <>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            Interações Medicamentosas - {data[index][Titulo]}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][InteraçõesMedicamentosas]}} className='text-info-card'></div>
+        </Modal.Body>
+      </Modal>
+
       <div className='info-card'>
         <div className='content-button-title'>
           <div>
-            <button className='button-collapse' onClick={() => setInteractions(interactions ? false : true)}>
-              <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
-                <div>
-                  <FiPlus />
-                </div>
-              </IconContext.Provider>
-            </button>
-            
-            <text className='title-info-card'>{InteraçõesMedicamentosas.toUpperCase()}</text> 
+            <text className='title-info-card-important'>{InteraçõesMedicamentosas.toUpperCase()}</text> 
           </div>
         
           <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#ffbd59"}}}>
@@ -71,25 +89,15 @@ const Leaflet = ({data, index}) => {
             </div>
           </IconContext.Provider>
         </div>
-
-        <Collapse in={interactions}>
-          <text  className='text-info-card'>
-            {data[index][InteraçõesMedicamentosas]}
-          </text>
-        </Collapse>     
+       
+        <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][InteraçõesMedicamentosas].slice(0, 1500) + '...' }} className='text-info-card'></div>
+        <text className="see-more" onClick={() =>show()}>ver mais</text>
       </div>
 
       <div className='info-card'>
         <div className='content-button-title'>
           <div>
-            <button className='button-collapse' onClick={() => setActives(actives ? false : true)}>
-              <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#fff"}}}>
-                <div>
-                  <FiPlus />
-                </div>
-              </IconContext.Provider>
-            </button>
-            <text className='title-info-card'>{PrincipiosAtivos.toUpperCase()}</text>
+            <text className='title-info-card-important'>{PrincipiosAtivos.toUpperCase()}</text>
           </div>
 
           <IconContext.Provider  value={{ style: {fontSize: '25px', color: "#ffbd59"}}}>
@@ -99,11 +107,11 @@ const Leaflet = ({data, index}) => {
           </IconContext.Provider>
         </div>
        
-        <Collapse in={actives}>
-          <text  className='text-info-card'>
-            {data[index][PrincipiosAtivos]}
-          </text>
-        </Collapse>         
+        <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][PrincipiosAtivos]}} className='text-info-card'></div>
+      </div>
+
+      <div className="divisor">
+        <text className="text-divisor">Demais informações</text>
       </div>
 
       <div className='info-card'>
@@ -119,9 +127,7 @@ const Leaflet = ({data, index}) => {
         </div>
       
         <Collapse in={open1}>
-          <text  className='text-info-card'>
-            {data[index][ComoDevoUsarEsteMedicamento]}
-          </text>
+          <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][ComoDevoUsarEsteMedicamento] }} className='text-info-card'></div>
         </Collapse>         
       </div>
 
@@ -139,7 +145,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open2}>
           <text  className='text-info-card'>
-            {data[index][ComoEsteMedicamentoFunciona]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][ComoEsteMedicamentoFunciona] }} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -158,7 +164,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open3}>
           <text  className='text-info-card'>
-            {data[index][GruposFarmacologicos]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][GruposFarmacologicos] }} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -177,7 +183,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open4}>
           <text  className='text-info-card'>
-            {data[index][IndicacoesTerapeuticas]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][IndicacoesTerapeuticas] }} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -196,7 +202,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open5}>
           <text  className='text-info-card'>
-            {data[index][OQueDevoFazerQuandoEsquecer]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][OQueDevoFazerQuandoEsquecer] }} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -215,7 +221,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open6}>
           <text className='text-info-card'>
-            {data[index][OQueDevoSaberAntesDeUsar]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][OQueDevoSaberAntesDeUsar]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -234,7 +240,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open7}>
           <text  className='text-info-card'>
-            {data[index][OQueFazerSeAlguemUsarUmaQuantidadeMaior]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][OQueFazerSeAlguemUsarUmaQuantidadeMaior]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -253,7 +259,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open8}>
           <text  className='text-info-card'>
-            {data[index][OndeComoEPorQuantoTempoPossoGuardar]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][OndeComoEPorQuantoTempoPossoGuardar]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -272,7 +278,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open9}>
           <text  className='text-info-card'>
-            {data[index][ParaQueEsteMedicamentoIndicado]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][ParaQueEsteMedicamentoIndicado]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -291,7 +297,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open10}>
           <text  className='text-info-card'>
-            {data[index][QuaisOsMales]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][QuaisOsMales]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
@@ -310,7 +316,7 @@ const Leaflet = ({data, index}) => {
       
         <Collapse in={open11}>
           <text  className='text-info-card'>
-            {data[index][QuandoNaoDevoUsar]}
+            <div contentEditable='false' dangerouslySetInnerHTML={{ __html: data[index][QuandoNaoDevoUsar]}} className='text-info-card'></div>
           </text>
         </Collapse>         
       </div>
