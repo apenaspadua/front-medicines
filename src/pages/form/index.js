@@ -19,39 +19,39 @@ const ModalLoader = () => (
       type="ThreeDots"
       color="#e31b24"
       height={60}
-      width={60}/>
+      width={60} />
   </>
 )
 
-const ModalError = () => (
+const ModalError = ({ text }) => (
   <>
-    <IconContext.Provider  value={{ style: {fontSize: '50px', color: "#e31b24", marginBottom: 20, marginTop: 20}}}>
+    <IconContext.Provider value={{ style: { fontSize: '50px', color: "#e31b24", marginBottom: 20, marginTop: 20 } }}>
       <div>
         <FiMeh />
       </div>
     </IconContext.Provider>
 
     <text className="text-loader">Algo deu errado!</text>
-    <text className="text-loader-sub">Verifique se preencheu corretamente todos os campos.</text>
+    <text className="text-loader-sub">{text}</text>
   </>
 )
 
-const ModalSuccess = ({data}) => {
+const ModalSuccess = ({ data }) => {
   const history = useHistory();
 
   return (
     <>
-      <IconContext.Provider  value={{ style: {fontSize: '50px', color: "#6cc745", marginBottom: 20, marginTop: 20}}}>
+      <IconContext.Provider value={{ style: { fontSize: '50px', color: "#6cc745", marginBottom: 20, marginTop: 20 } }}>
         <div>
           <FiCheck />
         </div>
       </IconContext.Provider>
 
       <text className="text-loader">Encontramos o que precisava!</text>
-      <button className="button_success" onClick={() => history.push({pathname: 'response', state: data}) }>
+      <button className="button_success" onClick={() => { }}>
         Consultar
       </button>
-      
+
     </>
   )
 }
@@ -63,25 +63,24 @@ export default function Form() {
   const [secDrug, setSecDrug] = useState('')
 
   const [showModal, setShowModal] = useState(false)
-  const [modalType, setModalType] = useState( <ModalLoader />)
+  const [modalType, setModalType] = useState(<ModalLoader />)
 
-  async function handleSubmit(primary_drug, second_drug) {   
-    
-    const data = {
-      primary_drug,
-      second_drug
-    }    
+  // VALIDACOES TESTE - PLAYMATCH
 
-    await api.post('medicines', data)
-      .then(res => {    
-        setModalType(<ModalSuccess data={res.data}/>)       
-      })
-      
-      .catch((error) => { 
-        setModalType(<ModalError /> )       
-        console.log(error) 
-      });
+  const validateInput = (primary_drug) => {
+    if (primary_drug === "Covid19") return setModalType(<ModalError text="Isso não é um medicamento!" />)
+    else if (primary_drug.length > 10) return setModalType(<ModalError text="String maior do que espera" />)
+    else return true
   }
+
+  async function handleSubmit(primary_drug, second_drug) {
+
+    if (validateInput(primary_drug)) {
+      setModalType(<ModalSuccess />)
+    }
+  }
+
+  // FIM - VALIDACOES TESTE - PLAYMATCH
 
   const show = () => {
     setShowModal(true)
@@ -91,7 +90,7 @@ export default function Form() {
     setShowModal(false)
     setModalType(<ModalLoader />)
   }
- 
+
   return (
     <div className='section'>
 
@@ -100,47 +99,47 @@ export default function Form() {
           {modalType}
         </div>
       </Rodal>
-      
+
       <div className='sparrow'></div>
 
       <FadeIn>
         <div className="container">
-        
-            <text className="title_form">Pesquise os medicamentos desejados</text>
 
-            <div className="forms">
+          <text className="title_form">Pesquise os medicamentos desejados</text>
 
-              <div className="fisrt-form">
-                <input type="text" class="form__input" id="name" placeholder="Ex: Aspirina" required="" onChange={drug => setPriDrug(drug.target.value)}/>
-                {/* <label for="name" class="form__label">Primeiro medicamento</label> */}
-              </div>
-            
-              <IconContext.Provider  value={{ style: {fontSize: '20px', color: "#e31b24", marginBottom: 20, marginTop: 20}}}>
-                <div>
-                  <FaArrowDown />
-                </div>
-              </IconContext.Provider>
+          <div className="forms">
 
-
-              <div className="second-form">
-                <input type="text" class="form__input" id="name" placeholder="Ex: Diazepam" required="" onChange={drug => setSecDrug(drug.target.value)}/>
-                {/* <label for="name" class="form__label">Segundo medicamento</label> */}
-              </div>
-            
+            <div className="fisrt-form">
+              <input type="text" class="form__input" id="name" placeholder="Ex: Aspirina" required="" onChange={drug => setPriDrug(drug.target.value)} />
+              {/* <label for="name" class="form__label">Primeiro medicamento</label> */}
             </div>
 
-            <button className="button_search" onClick={() => {
-              show()
-              handleSubmit(priDrug, secDrug)
-            }}>
-              Buscar bulas
-            </button>
-        
+            <IconContext.Provider value={{ style: { fontSize: '20px', color: "#e31b24", marginBottom: 20, marginTop: 20 } }}>
+              <div>
+                <FaArrowDown />
+              </div>
+            </IconContext.Provider>
+
+
+            <div className="second-form">
+              <input type="text" class="form__input" id="name" placeholder="Ex: Diazepam" required="" onChange={drug => setSecDrug(drug.target.value)} />
+              {/* <label for="name" class="form__label">Segundo medicamento</label> */}
+            </div>
+
+          </div>
+
+          <button className="button_search" onClick={() => {
+            show()
+            handleSubmit(priDrug, secDrug)
+          }}>
+            Buscar bulas
+          </button>
+
         </div>
 
       </FadeIn>
-      
+
     </div>
-   
+
   );
 }
